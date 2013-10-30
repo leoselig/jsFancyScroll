@@ -126,10 +126,11 @@
 					var ratio = elSize / scrollSize;
 					var scrollRelative = scroll[vocab.pos] / maxScrollSize;
 					var thumbSize = ((ratio > 1) ? 1 : ratio) * elSize;
+					var scrollbarSize = $scrollbar[vocab.axis][vocab.size]();
 
 					var css = {};
 					css[vocab.size] = thumbSize + 'px';
-					css[vocab.pos] = (scrollRelative * (viewportSize - thumbSize)) + 'px';
+					css[vocab.pos] = (scrollRelative * (scrollbarSize - thumbSize)) + 'px';
 					$thumb[vocab.axis].css(css);
 
 					console.log('scrollRelative = ' + scrollRelative);

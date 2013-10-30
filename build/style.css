@@ -26,6 +26,7 @@
   border-radius: 2.5pt;
   cursor: pointer;
   z-index: 1;
+  margin: 5pt;
   background: #dcdcdc;
   -webkit-transition: opacity ease-in-out 150ms, background ease-in-out 150ms;
   -moz-transition: opacity ease-in-out 150ms, background ease-in-out 150ms;
@@ -85,15 +86,15 @@
 .scrollX > .scrollbarY,
 .scrollY > .scrollbarY {
   top: 0;
+  bottom: 0;
   right: 0;
   width: 5pt;
-  height: 100%;
 }
 .scrollX > .scrollbarX,
 .scrollY > .scrollbarX {
   bottom: 0;
   left: 0;
-  width: 100%;
+  right: 0;
   height: 5pt;
 }
 .scrollX > .viewport,
@@ -117,4 +118,10 @@
 .scrollY > .viewport {
   overflow-x: hidden;
   overflow-y: scroll;
+}
+.scrollX.scrollY > .scrollbarX {
+  margin-right: 10pt;
+}
+.scrollX.scrollY > .scrollbarY {
+  margin-bottom: 10pt;
 }

@@ -20,6 +20,7 @@
 		border-radius: @scrollbarSize * 0.5;
 		cursor: pointer;
 		z-index: 1;
+		margin: @scrollbarMargin;
 		.rgbaBackground(@barColor);
 		.transition2(opacity, background);
 
@@ -53,15 +54,15 @@
 
 	> .scrollbarY {
 		top: 0;
+		bottom: 0;
 		right: 0;
 		width: @scrollbarSize;
-		height: 100%;
 	}
 
 	> .scrollbarX {
 		bottom: 0;
 		left: 0;
-		width: 100%;
+		right: 0;
 		height: @scrollbarSize;
 	}
 
@@ -85,4 +86,15 @@
 .scrollY > .viewport {
 	overflow-x: hidden;
 	overflow-y: scroll;
+}
+
+.scrollX.scrollY {
+
+	> .scrollbarX {
+		margin-right: @scrollbarMargin + @scrollbarSize;
+	}
+
+	> .scrollbarY {
+		margin-bottom: @scrollbarMargin + @scrollbarSize;
+	}
 }
