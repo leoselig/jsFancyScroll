@@ -1,0 +1,88 @@
+@import "variables";
+@import "mixins";
+
+.scrollX, .scrollY {
+	@thumbColor: darken(@scrollbarColor, 20%);
+	@barColor: lighten(@scrollbarColor, 20%);
+	position: relative;
+	overflow: hidden;
+	padding: 0;
+
+	&:hover {
+		> .scrollbarY, .scrollbarX {
+			opacity: 1;
+		}
+	}
+
+	> .scrollbarY, .scrollbarX {
+		position: absolute;
+		opacity: 0;
+		border-radius: @scrollbarSize * 0.5;
+		cursor: pointer;
+		z-index: 1;
+		.rgbaBackground(@barColor);
+		.transition2(opacity, background);
+
+		&.dragScrolling {
+			opacity: 1;
+		}
+
+		&.disabled {
+			display: none;
+		}
+
+		> .thumb {
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			border-radius: @scrollbarSize * 0.5;
+			.rgbaBackground(@thumbColor, 0.75);
+			.transition(background);
+		}
+
+		&:hover, &.dragScrolling {
+			z-index: 2;
+
+			> .thumb {
+				.rgbaBackground(darken(@thumbColor, 20%), 0.75);
+			}
+		}
+	}
+
+	> .scrollbarY {
+		top: 0;
+		right: 0;
+		width: @scrollbarSize;
+		height: 100%;
+	}
+
+	> .scrollbarX {
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: @scrollbarSize;
+	}
+
+	> .viewport {
+		.boxSizing(content-box);
+		overflow: auto;
+		width: 100%;
+		height: 100%;
+
+		> .content {
+			overflow: hidden;
+		}
+	}
+}
+
+.scrollX > .viewport {
+	overflow-x: scroll;
+	overflow-y: hidden;
+}
+
+.scrollY > .viewport {
+	overflow-x: hidden;
+	overflow-y: scroll;
+}

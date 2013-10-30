@@ -1,0 +1,39 @@
+@import "variables";
+
+.rgbaBackground(@color, @alpha) {
+	background: rgb(red(@color), green(@color), blue(@color));
+	background: rgba(red(@color), green(@color), blue(@color), @alpha);
+}
+
+.rgbaBackground(@color) {
+	.rgbaBackground(@color, alpha(@color));
+}
+
+.transition(@prop, @speed: 150ms) {
+	-webkit-transition: @prop ease-in-out @speed;
+	-moz-transition: @prop ease-in-out @speed;
+	-ms-transition: @prop ease-in-out @speed;
+	-o-transition: @prop ease-in-out @speed;
+}
+
+.transition2(@prop1, @prop2, @speed: 150ms) {
+	-webkit-transition: @prop1 ease-in-out @speed, @prop2 ease-in-out @speed;
+	-moz-transition: @prop1 ease-in-out @speed, @prop2 ease-in-out @speed;
+	-ms-transition: @prop1 ease-in-out @speed, @prop2 ease-in-out @speed;
+	-o-transition: @prop1 ease-in-out @speed, @prop2 ease-in-out @speed;
+}
+
+.boxSizing(@value) {
+	box-sizing: @value;
+	-webkit-box-sizing: @value;
+	-moz-box-sizing: @value;
+	-ms-box-sizing: @value;
+}
+
+/* user-select polyfill for IE */
+[unselectable=on] {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	user-select: none;
+}

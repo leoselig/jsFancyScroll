@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Demo - jsFancyScroll</title>
+
+	<script type="text/javascript"
+	        src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+
+	<script type="text/javascript" src="../build/plugin.js"></script>
+
+	<script type="text/javascript">
+
+		$(document).ready(function() {
+			var text = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non ultrices neque, vel convallis lorem. Integer feugiat, ipsum at ultricies malesuada, sem justo ullamcorper nulla, eget rutrum quam lectus ut libero. Maecenas placerat est sit amet purus tempor, eu laoreet eros porta.';
+			var counter = 1;
+
+			var add = function() {
+				$('.myScroll .content').append('<li><h1>Item ' + counter++ + '</h1><p>' +
+				                             text +
+				                             '</p></li>');
+			}
+
+			for(var i = 0; i < 10; i++) {
+				add();
+			}
+		});
+
+	</script>
+
+	<link type="text/css" rel="stylesheet" href="../build/style.css">
+
+	<style type="text/css">
+
+		html, body, .myScroll {
+			height: 100%;
+			margin: 0;
+		}
+
+		html, body {
+			padding: 0;
+		}
+
+		body {
+			padding: 20pt;
+			box-sizing: border-box;
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;
+		}
+
+		.myScroll {
+			width: 750px;
+			height: 250px;
+			margin: 10pt auto;
+			border: 1pt solid #CCC;
+		}
+
+	</style>
+</head>
+<body>
+
+<ul class="scrollY myScroll">
+	<div class="scrollbarY">
+		<div class="thumb"></div>
+	</div>
+	<div class="viewport">
+		<div class="content" style="width: 2000px;"></div>
+	</div>
+</ul>
+
+<ul class="scrollX myScroll">
+	<div class="scrollbarX">
+		<div class="thumb"></div>
+	</div>
+	<div class="viewport">
+		<div class="content" style="width: 2000px; height: 100px;"></div>
+	</div>
+</ul>
+
+<ul class="scrollX scrollY myScroll">
+	<div class="scrollbarX">
+		<div class="thumb"></div>
+	</div>
+	<div class="scrollbarY">
+		<div class="thumb"></div>
+	</div>
+	<div class="viewport">
+		<div class="content" style="width: 2000px;"></div>
+	</div>
+</ul>
+
+</body>
+</html>

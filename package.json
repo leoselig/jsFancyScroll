@@ -1,0 +1,37 @@
+{
+	"name":            "jsFancyScroll",
+	"version":         "1.0.0",
+	"description":     "Ridiculously fast custom scrollbar plugin for jQuery using the same smart technique as Facebook.",
+	"scripts":         {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository":      {
+		"type": "git",
+		"url":  "https://github.com/leoselig/jsFancyScroll.git"
+	},
+	"keywords":        [
+		"jquery",
+		"plugin",
+		"scroll"
+	],
+	"author":          "Leo Selig",
+	"license":         "MIT",
+	"readmeFilename":  "README.md",
+	"gitHead":         "036b4f44cb40c8b4950a8212cc7675918235651d",
+	"dependencies":    {
+		"grunt":                   "~0.4.1",
+		"grunt-contrib-clean":     "~0.5.0",
+		"grunt-contrib-less":      "~0.7.0",
+		"grunt-contrib-copy":      "~0.4.1",
+		"grunt-contrib-uglify":    "~0.2.2",
+		"grunt-contrib-watch":     "~0.5.1"
+	},
+	"devDependencies": {
+		"grunt":                "~0.4.1",
+		"grunt-contrib-clean":  "~0.5.0",
+		"grunt-contrib-copy":   "~0.4.1",
+		"grunt-contrib-less":   "~0.7.0",
+		"grunt-contrib-watch":  "~0.5.2",
+		"grunt-contrib-uglify": "~0.2.2"
+	}
+}

@@ -1,0 +1,120 @@
+/* user-select polyfill for IE */
+[unselectable=on] {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  user-select: none;
+}
+.scrollX,
+.scrollY {
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+}
+.scrollX:hover > .scrollbarY,
+.scrollY:hover > .scrollbarY,
+.scrollX:hover .scrollbarX,
+.scrollY:hover .scrollbarX {
+  opacity: 1;
+}
+.scrollX > .scrollbarY,
+.scrollY > .scrollbarY,
+.scrollX .scrollbarX,
+.scrollY .scrollbarX {
+  position: absolute;
+  opacity: 0;
+  border-radius: 2.5pt;
+  cursor: pointer;
+  z-index: 1;
+  background: #dcdcdc;
+  -webkit-transition: opacity ease-in-out 150ms, background ease-in-out 150ms;
+  -moz-transition: opacity ease-in-out 150ms, background ease-in-out 150ms;
+  -ms-transition: opacity ease-in-out 150ms, background ease-in-out 150ms;
+  -o-transition: opacity ease-in-out 150ms, background ease-in-out 150ms;
+}
+.scrollX > .scrollbarY.dragScrolling,
+.scrollY > .scrollbarY.dragScrolling,
+.scrollX .scrollbarX.dragScrolling,
+.scrollY .scrollbarX.dragScrolling {
+  opacity: 1;
+}
+.scrollX > .scrollbarY.disabled,
+.scrollY > .scrollbarY.disabled,
+.scrollX .scrollbarX.disabled,
+.scrollY .scrollbarX.disabled {
+  display: none;
+}
+.scrollX > .scrollbarY > .thumb,
+.scrollY > .scrollbarY > .thumb,
+.scrollX .scrollbarX > .thumb,
+.scrollY .scrollbarX > .thumb {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 2.5pt;
+  background: #767676;
+  background: rgba(118, 118, 118, 0.75);
+  -webkit-transition: background ease-in-out 150ms;
+  -moz-transition: background ease-in-out 150ms;
+  -ms-transition: background ease-in-out 150ms;
+  -o-transition: background ease-in-out 150ms;
+}
+.scrollX > .scrollbarY:hover,
+.scrollY > .scrollbarY:hover,
+.scrollX .scrollbarX:hover,
+.scrollY .scrollbarX:hover,
+.scrollX > .scrollbarY.dragScrolling,
+.scrollY > .scrollbarY.dragScrolling,
+.scrollX .scrollbarX.dragScrolling,
+.scrollY .scrollbarX.dragScrolling {
+  z-index: 2;
+}
+.scrollX > .scrollbarY:hover > .thumb,
+.scrollY > .scrollbarY:hover > .thumb,
+.scrollX .scrollbarX:hover > .thumb,
+.scrollY .scrollbarX:hover > .thumb,
+.scrollX > .scrollbarY.dragScrolling > .thumb,
+.scrollY > .scrollbarY.dragScrolling > .thumb,
+.scrollX .scrollbarX.dragScrolling > .thumb,
+.scrollY .scrollbarX.dragScrolling > .thumb {
+  background: #434343;
+  background: rgba(67, 67, 67, 0.75);
+}
+.scrollX > .scrollbarY,
+.scrollY > .scrollbarY {
+  top: 0;
+  right: 0;
+  width: 5pt;
+  height: 100%;
+}
+.scrollX > .scrollbarX,
+.scrollY > .scrollbarX {
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 5pt;
+}
+.scrollX > .viewport,
+.scrollY > .viewport {
+  box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  -ms-box-sizing: content-box;
+  overflow: auto;
+  width: 100%;
+  height: 100%;
+}
+.scrollX > .viewport > .content,
+.scrollY > .viewport > .content {
+  overflow: hidden;
+}
+.scrollX > .viewport {
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+.scrollY > .viewport {
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
