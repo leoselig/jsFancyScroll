@@ -103,20 +103,21 @@
   -webkit-box-sizing: content-box;
   -moz-box-sizing: content-box;
   -ms-box-sizing: content-box;
-  overflow: auto;
   width: 100%;
   height: 100%;
+  overflow: hidden;
 }
 .scrollX > .viewport > .content,
 .scrollY > .viewport > .content {
-  overflow: hidden;
+  box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  -ms-box-sizing: content-box;
 }
-.scrollX > .viewport {
+.scrollX.initialized > .viewport {
   overflow-x: scroll;
-  overflow-y: hidden;
 }
-.scrollY > .viewport {
-  overflow-x: hidden;
+.scrollY.initialized > .viewport {
   overflow-y: scroll;
 }
 .scrollX.scrollY > .scrollbarX {

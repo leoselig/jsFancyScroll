@@ -68,23 +68,21 @@
 
 	> .viewport {
 		.boxSizing(content-box);
-		overflow: auto;
 		width: 100%;
 		height: 100%;
+		overflow: hidden;
 
 		> .content {
-			overflow: hidden;
+			.boxSizing(content-box);
 		}
 	}
 }
 
-.scrollX > .viewport {
+.scrollX.initialized > .viewport {
 	overflow-x: scroll;
-	overflow-y: hidden;
 }
 
-.scrollY > .viewport {
-	overflow-x: hidden;
+.scrollY.initialized > .viewport {
 	overflow-y: scroll;
 }
 

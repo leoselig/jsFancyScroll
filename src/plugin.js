@@ -39,7 +39,7 @@
 			 * @private
 			 * @final
 			 */
-			x: $el.find('> .scrollbarX'),
+			x: null,
 
 			/**
 			 * @property $scrollbar.y
@@ -47,7 +47,7 @@
 			 * @private
 			 * @final
 			 */
-			y: $el.find('> .scrollbarY')
+			y: null
 		};
 
 		var $thumb = {
@@ -58,7 +58,7 @@
 			 * @private
 			 * @final
 			 */
-			x: $scrollbar.x.find('> .thumb'),
+			x: null,
 
 			/**
 			 * @property $thumb.y
@@ -66,7 +66,7 @@
 			 * @private
 			 * @final
 			 */
-			y: $scrollbar.y.find('> .thumb')
+			y: null
 		}
 
 		var lastScroll = {
@@ -108,7 +108,7 @@
 			var perform = function(vertical) {
 				var vocab = vocabulary(vertical);
 
-				var scrollSize = $content['outer' + vocab.sizeUpper]();
+				var scrollSize = $content[0]['scroll' + vocab.sizeUpper];
 				var viewportSize = $viewport[vocab.size]();
 				if(scrollSize <= viewportSize) {
 					$scrollbar[vocab.axis].addClass('disabled');
@@ -130,7 +130,8 @@
 
 					var css = {};
 					css[vocab.size] = thumbSize + 'px';
-					css[vocab.pos] = (scrollRelative * (scrollbarSize - thumbSize)) + 'px';
+					css[vocab.pos] = (scrollRelative * (scrollbarSize - thumbSize)) +
+					                 'px';
 					$thumb[vocab.axis].css(css);
 
 					console.log('scrollRelative = ' + scrollRelative);
@@ -211,8 +212,35 @@
 		 * @private
 		 */
 		var init = function() {
+			if($el.is('.scrollX')) {
+				$viewport.css({
+					'padding-bottom': scrollbarSize + 'px',
+					'margin-bottom': (-scrollbarSize) + 'px'
+				});
+				$content.css({
+					'margin-bottom': (-scrollbarSize) + 'px'
+				});
+				$el.prepend($(scrollbarTpl).addClass('scrollbarX'));
+			}
+			if($el.is('.scrollY')) {
+				$viewport.css({
+					'padding-right': scrollbarSize + 'px',
+					'margin-right': (-scrollbarSize) + 'px'
+				});
+				$content.css({
+					'margin-right': (-scrollbarSize) + 'px'
+				});
+				$el.prepend($(scrollbarTpl).addClass('scrollbarY'));
+			}
+			$scrollbar.x = $el.find('> .scrollbarX');
+			$scrollbar.y = $el.find('> .scrollbarY');
+			$thumb.x = $scrollbar.x.find('> .thumb');
+			$thumb.y = $scrollbar.y.find('> .thumb');
+
 			setupEvents();
-			this.update();
+
+			$el.addClass('initialized');
+			self.update();
 		}
 
 		init.apply(this);
@@ -255,26 +283,13 @@
 	var $doc = $(document);
 
 	/**
-	 * @method addCSSRule
-	 * @param selector {string}
-	 * @param rules {string}
+	 * @property scrollbarTpl
+	 * @type {string}
 	 * @private
 	 * @static
+	 * @final
 	 */
-	var addCSSRule = (function() {
-		var $style = $('<style type="text/css"></style>');
-		$('head').append($style);
-		var sheet = $style[0].sheet;
-
-		return function(selector, rules) {
-			if(sheet.insertRule) {
-				sheet.insertRule(selector + "{" + rules + "}", 0);
-			}
-			else {
-				sheet.addRule(selector, rules, index);
-			}
-		};
-	})();
+	var scrollbarTpl = '<div><div class="thumb"></div></div>';
 
 	/**
 	 * @method vocabulary
@@ -328,10 +343,6 @@
 		});
 		scrollbarSize = $container.width() - $scroll.width();
 		$container.remove();
-		addCSSRule('.scrollX > .viewport', 'padding-bottom: ' +
-		                                   scrollbarSize + 'px;');
-		addCSSRule('.scrollY .viewport', 'padding-right: ' +
-		                                 scrollbarSize + 'px;');
 	});
 
 	$doc.on('mousemove', '.scrollX, .scrollY', function(e) {
