@@ -24,7 +24,7 @@ This enables:
 ##Usage
 To create a vertically scrollable area you just need the following markup.
 ```
-<ul class="scrollY">
+<div class="scrollY">
     <div class="scrollbarY">
 		<div class="thumb"></div>
 	</div>
@@ -33,14 +33,14 @@ To create a vertically scrollable area you just need the following markup.
             <!-- Your conent -->
         </div>
 	</div>
-</ul>
+</div>
 ```
 That's it - no initialization required! ;)
 
 You might as well use horizontal scrolling:
 
 ```
-<ul class="scrollX">
+<div class="scrollX">
     <div class="scrollbarX">
     	<div class="thumb"></div>
 	</div>
@@ -49,13 +49,13 @@ You might as well use horizontal scrolling:
             <!-- Your conent -->
         </div>
 	</div>
-</ul>
+</div>
 ```
 
 And of course, you can combine these two:
 
 ```
-<ul class="scrollX scrollY">
+<div class="scrollX scrollY">
     <div class="scrollbarX">
         <div class="thumb"></div>
     </div>
@@ -67,7 +67,7 @@ And of course, you can combine these two:
             <!-- Your conent -->
         </div>
 	</div>
-</ul>
+</div>
 ```
 
 ##Contribution
