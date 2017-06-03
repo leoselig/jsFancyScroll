@@ -134,10 +134,6 @@
 					                 'px';
 					$thumb[vocab.axis].css(css);
 
-					console.log('scrollRelative = ' + scrollRelative);
-					console.log('scrollTop      = ' + scroll[vocab.pos]);
-					console.log('maxScrollSize  = ' + maxScrollSize);
-					console.log('scrollSize     = ' + scrollSize);
 				}
 			}
 			perform(true);
@@ -330,19 +326,17 @@
 	}
 
 	$doc.ready(function() {
-		var $container = $('<div><div></div></div>');
-		$('body').append($container);
-		$container.css({
-			overflow: 'scroll',
-			height:   '100px',
-			width:    '100px'
-		});
-		var $scroll = $container.find('> div').css({
-			height: '100%',
-			width:  '100%'
-		});
-		scrollbarSize = $container.width() - $scroll.width();
-		$container.remove();
+		// calculation based on https://stackoverflow.com/a/19015262/905801
+                var $outer = $('<div>').css({
+                    visibility: 'hidden', 
+                    width: 100, 
+                    overflow: 'scroll'
+                }).appendTo('body');
+                var widthWithScroll = $('<div>').css({
+                    width: '100%'
+                }).appendTo($outer).outerWidth();
+                $outer.remove();
+                scrollbarSize =  100 - widthWithScroll;
 	});
 
 	$doc.on('mousemove', '.scrollX, .scrollY', function(e) {
